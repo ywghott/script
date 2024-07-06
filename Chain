@@ -1,7 +1,7 @@
 -- Function to check if the current game is "Chain"
 local function isChainGame()
     -- Replace this with the actual Game ID of "Chain"
-    local CHAIN_GAME_ID = "1234567890"  -- Replace with actual Game ID of "Chain"
+    local CHAIN_GAME_ID = "13977939077"  -- Replace with actual Game ID of "Chain"
     
     -- Check if the current game's ID matches the "Chain" game ID
     return game.PlaceId == CHAIN_GAME_ID
