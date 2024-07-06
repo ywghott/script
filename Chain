@@ -1,174 +1,198 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Faith Client - CHAIN [PRE-ALPHA]", HidePremium = false, IntroText = "Faith's Client", SaveConfig = true, ConfigFolder = "FaithTest"})
+-- Function to check if the current game is "Chain"
+local function isChainGame()
+    -- Replace this with the actual Game ID of "Chain"
+    local CHAIN_GAME_ID = "1234567890"  -- Replace with actual Game ID of "Chain"
+    
+    -- Check if the current game's ID matches the "Chain" game ID
+    return game.PlaceId == CHAIN_GAME_ID
+end
 
--- Variables
+-- Only proceed with script execution if it's the "Chain" game
+if isChainGame() then
+    local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+    local Window = OrionLib:MakeWindow({Name = "Faith Client - CHAIN [PRE-ALPHA]", HidePremium = false, IntroText = "Faith's Client", SaveConfig = true, ConfigFolder = "FaithTest"})
 
-getgenv().InfiniteStamina
-getgenv().InfiniteCStamina
-getgenv().Noclip
-getgenv().ScrapEsp
+    -- Variables for toggles
+    getgenv().InfiniteStamina = false
+    getgenv().InfiniteCStamina = false
+    getgenv().Noclip = false
+    getgenv().ScrapEsp = false
 
--- Functions
-
-function Infinite Stamina()
-    while getgenv().InfiniteStamina == true do
-            while true do
+    -- Function for Infinite Stamina
+    local function InfiniteStamina()
+        while getgenv().InfiniteStamina do
             game.Players.LocalPlayer.Stats.Stamina.Value = 100
-            wait(1)        
+            wait(1)
         end
     end
 
-function Infinite CStamina()
-    while getgenv().InfiniteCStamina == true do
-            while true do
+    -- Function for Infinite Combat Stamina
+    local function InfiniteCStamina()
+        while getgenv().InfiniteCStamina do
             game.Players.LocalPlayer.Stats.CombatStamina.Value = 100
-            wait(1)        
+            wait(1)
+        end
+    end
+
+    -- Function for Scrap ESP
+    local function ScrapEsp()
+        local models = {
+            -- Add the models here
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[3],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[21],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap.ScrapNormal,
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[11],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[2],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[19],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[18],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[17],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[16],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[15],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[14],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[13],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[12],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[20],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[10],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[9],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[8],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[7],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[6],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[5],
+            game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[4],
+        }
+        
+        -- Function to draw ESP for a part
+        local function drawPartESP(part)
+            local billboardGui = Instance.new("BillboardGui")
+            billboardGui.Adornee = part
+            billboardGui.Size = UDim2.new(0, 100, 0, 20)
+            billboardGui.StudsOffset = Vector3.new(0, 3, 0)
+            billboardGui.AlwaysOnTop = true
+            billboardGui.Name = "ESP"
+        
+            local textLabel = Instance.new("TextLabel")
+            textLabel.Parent = billboardGui
+            textLabel.BackgroundTransparency = 1
+            textLabel.Size = UDim2.new(1, 0, 1, 0)
+            textLabel.Text = part.Name
+            textLabel.Font = Enum.Font.SourceSans
+            textLabel.TextSize = 14
+            textLabel.TextColor3 = Color3.new(1, 1, 1)
+            textLabel.TextStrokeTransparency = 0.5
+        
+            billboardGui.Parent = part
+        end
+        
+        for _, model in ipairs(models) do
+            local children = model:GetChildren()
+            for _, part in ipairs(children) do
+                drawPartESP(part)
             end
         end
-           
-function ScrapEsp()
-   while getgenv().ScrapEsp == true do
-    local models = {
-        -- Add the models here
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[3],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[21],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap.ScrapNormal,
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[11],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[2],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[19],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[18],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[17],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[16],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[15],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[14],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[13],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[12],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[20],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[10],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[9],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[8],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[7],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[6],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[5],
-        game:GetService("Workspace").Misc.Zones.LootingItems.Scrap:GetChildren()[4],
-    }
-    
-    -- Function to draw ESP for a part
-    local function drawPartESP(part)
-        -- Create a BillboardGui for the part
-        local billboardGui = Instance.new("BillboardGui")
-        billboardGui.Adornee = part
-        billboardGui.Size = UDim2.new(0, 100, 0, 20)
-        billboardGui.StudsOffset = Vector3.new(0, 3, 0)
-        billboardGui.AlwaysOnTop = true
-        billboardGui.Name = "ESP"
-    
-        -- Create a TextLabel to display the part's name
-        local textLabel = Instance.new("TextLabel")
-        textLabel.Parent = billboardGui
-        textLabel.BackgroundTransparency = 1
-        textLabel.Size = UDim2.new(1, 0, 1, 0)
-        textLabel.Text = part.Name
-        textLabel.Font = Enum.Font.SourceSans
-        textLabel.TextSize = 14
-        textLabel.TextColor3 = Color3.new(1, 1, 1)
-        textLabel.TextStrokeTransparency = 0.5
-    
-        -- Attach the BillboardGui to the part
-        billboardGui.Parent = part
-    end
-    
-    -- Iterate over each model and draw ESP for each part
-    for _, model in ipairs(models) do
-        -- Get the children parts of the model
-        local children = model:GetChildren()
-    
-        -- Iterate over each part and draw ESP
-        for _, part in ipairs(children) do
-            drawPartESP(part)
-        end
     end
 
-    function Noclip()
-        while getgenv().Noclip == true do
-            local lighting = game:GetService("Lighting")
-
-            -- Set properties to remove all lighting effects
-            lighting.GlobalShadows = false
-            lighting.OutdoorAmbient = Color3.new(1, 1, 1) -- Set ambient lighting to white
-            lighting.Ambient = Color3.new(1, 1, 1) -- Set ambient lighting to white
-            lighting.FogEnd = 100000 -- Set a high value to remove fog
-            lighting.Brightness = 2 -- Increase brightness to illuminate the scene 
-            
-            local Noclip = nil
-            local Clip = nil
-            
-            function noclip()
-                Clip = false
-                local function Nocl()
-                    if Clip == false and game.Players.LocalPlayer.Character ~= nil then
-                        for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                            if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
-                                v.CanCollide = false
-                            end
+    -- Function for Noclip
+    local function Noclip()
+        local lighting = game:GetService("Lighting")
+        lighting.GlobalShadows = false
+        lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+        lighting.Ambient = Color3.new(1, 1, 1)
+        lighting.FogEnd = 100000
+        lighting.Brightness = 2
+        
+        local Noclip = nil
+        local Clip = nil
+        
+        local function noclip()
+            Clip = false
+            local function Nocl()
+                if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+                    for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                        if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+                            v.CanCollide = false
                         end
                     end
-                    wait(0.21) -- basic optimization
                 end
-                Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
+                wait(0.21)
             end
-            
-            function clip()
-                if Noclip then Noclip:Disconnect() end
-                Clip = true
+            Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
+        end
+        
+        local function clip()
+            if Noclip then Noclip:Disconnect() end
+            Clip = true
+        end
+        
+        noclip()
+    end
+
+    -- Tabs and Buttons as before
+    local StaminaTab = Window:MakeTab({
+        Name = "⚔ Combat",
+        Icon = "rbxassetid://",
+        PremiumOnly = false
+    })
+
+    local ScrapTab = Window:MakeTab({
+        Name = "♠ Scrap",
+        Icon = "rbxassetid://",
+        PremiumOnly = false
+    })
+
+    local NoclipTab = Window:MakeTab({
+        Name = "Noclip",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local EspTab = Window:MakeTab({
+        Name = "👀 Esp [BETA]",
+        Icon = "rbxassetid://",
+        PremiumOnly = false
+    })
+
+    -- Buttons for StaminaTab
+    StaminaTab:AddButton({
+        Name = "Infinite Stamina",
+        Callback = function()
+            getgenv().InfiniteStamina = not getgenv().InfiniteStamina
+            if getgenv().InfiniteStamina then
+                InfiniteStamina()
             end
-            
-            noclip() -- to toggle noclip() and clip(
-                end
--- Tabs
+        end
+    })
 
-local StaminaTab = Window:MakeTab({
-	Name = "⚔  Combat",
-	Icon = "rbxassetid://",
-	PremiumOnly = false
-})
+    StaminaTab:AddButton({
+        Name = "Infinite CombatStamina",
+        Callback = function()
+            getgenv().InfiniteCStamina = not getgenv().InfiniteCStamina
+            if getgenv().InfiniteCStamina then
+                InfiniteCStamina()
+            end
+        end
+    })
 
-local ScrapTab = Window:MakeTab({
-	Name = "♠  Scrap",
-	Icon = "rbxassetid://",
-	PremiumOnly = false
-})
+    -- Button for ScrapTab
+    ScrapTab:AddButton({
+        Name = "Scrap ESP",
+        Callback = function()
+            getgenv().ScrapEsp = not getgenv().ScrapEsp
+            if getgenv().ScrapEsp then
+                ScrapEsp()
+            end
+        end
+    })
 
-local NoclipTab = Window:MakeTab({
-	Name = "Noclip",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local EspTab = Window:MakeTab({
-	Name = "👀  Esp [BETA]",
-	Icon = "rbxassetid://",
-	PremiumOnly = false
-})
-
--- Buttons
-
-StaminaTab:AddButton({
-	Name = "Infinite Stamina",
-	Callback = function()
-      		print("Infinite Stamina Launched")
-    while true do
-  game.Players.LocalPlayer.Stats.Stamina.Value = 100
-  wait(1)
-  	end    
-})
-
-StaminaTab:AddButton({
-	Name = "Infinite CombatStamina",
-	Callback = function()
-      		print("Infinite CStamina Launched")
-    while true do
-  game.Players.LocalPlayer.Stats.CombatStamina.Value = 100
-  wait(1)
-  	end    
-})
+    -- Button for NoclipTab
+    NoclipTab:AddButton({
+        Name = "Noclip",
+        Callback = function()
+            getgenv().Noclip = not getgenv().Noclip
+            if getgenv().Noclip then
+                Noclip()
+            end
+        end
+    })
+else
+    warn("This script is intended for the Chain game.")
+end
